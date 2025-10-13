@@ -1,0 +1,78 @@
+label {
+    width: 150px;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+input {
+    width: 250px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 1em;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Formulaire */
+form {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+}
+
+/* Bouton submit */
+.btn-primary {
+    border-radius: 5px;
+    padding: 6px 12px;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+}
+
+/* Formulaire non valide : griser le bouton */
+form:invalid input[type="submit"] {
+    background-color: gray;
+}
+
+/* Formulaire valide : bouton devient bleu */
+form:valid input[type="submit"] {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Champ non valide */
+input:invalid {
+    border-color: red;
+}
+
+input:invalid + .icon-ok {
+    display: none;
+}
+
+/* Champ valide : afficher émoji et le champ devient bleu avec remplissage */
+input:valid {
+    border-color: blue;
+    background-color: #e6f3ff;
+}
+
+input:valid + .icon-ok {
+    display: inline-block;
+}
+
+/* Émoji par défaut (caché + vert) */
+.icon-ok {
+    display: none;
+    color: green;
+    font-family: Arial, sans-serif;
+}
+
+/* Fond de la page en gris clair */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
