@@ -1,39 +1,94 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TP4</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <style>
-        body {
-            background-color: #e9ebee;
-            font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-            font-size: 16px;
-            margin: 0 auto;
-            max-width: 800px;
-        }
-    </style>
-
-    <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
-    <!--<link rel="stylesheet" href="style.css">-->
-    <!--<script src="main.js"></script>-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un contact</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <style>
+    .char-count { font-size: 0.9em; color: #555; padding-top: 8px; }
+    #map-container { display: none; margin-bottom: 20px; }
+    #map { 
+      height: 380px; 
+      width: 100%; 
+      border: 3px solid #007bff; 
+      border-radius: 15px; 
+      box-shadow: 0 10px 30px rgba(0,123,255,0.4); 
+    }
+  </style>
 </head>
+<body class="container py-5">
 
-<body>
-    <nav>
-        <a href="..">🏠 Index</a> / TP4
-    </nav>
-    <h1>TP4</h1>
-    <!-- Add your site or application content here -->
-    <p>Hello world! This is HTML5 Boilerplate.</p>
-    <img src="../galilee.png" alt="Logo Galilee" />
+  <h1 class="mb-5">Ajouter un contact</h1>
+
+  <form novalidate>
+    <div class="row mb-3">
+      <div class="form-group col-2"><label for="name">Nom</label></div>
+      <div class="form-group col">
+        <input type="text" class="form-control" id="name" placeholder="Nom" required minlength="5" onkeyup="calcNbChar(this.id)">
+      </div>
+      <div class="form-group col-2 char-count" data-count>0 car.</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="form-group col-2"><label for="firstname">Prénom</label></div>
+      <div class="form-group col">
+        <input type="text" class="form-control" id="firstname" placeholder="Prénom" required minlength="5" onkeyup="calcNbChar(this.id)">
+      </div>
+      <div class="form-group col-2 char-count" data-count>0 car.</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="form-group col-2"><label for="birth">Date de naissance</label></div>
+      <div class="form-group col">
+        <input type="date" class="form-control" id="birth" required>
+      </div>
+      <div class="form-group col-2"></div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="form-group col-2"><label for="adresse">Adresse</label></div>
+      <div class="form-group col">
+        <input type="text" class="form-control" id="adresse" placeholder="Adresse ou coordonnées GPS" required minlength="5" onkeyup="calcNbChar(this.id)">
+      </div>
+      <div class="form-group col-2">
+        <button type="button" id="gps" class="btn btn-warning btn-sm w-100">GPS</button>
+      </div>
+      <div class="form-group col-2 char-count" data-count>0 car.</div>
+    </div>
+
+    <!-- CARTE INVISIBLE JUSQU'AU CLIC GPS -->
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="form-group col-2"><label for="mail">Mail</label></div>
+      <div class="form-group col">
+        <input type="email" class="form-control" id="mail" placeholder="exemple@mail.com" required onkeyup="calcNbChar(this.id)">
+      </div>
+      <div class="form-group col-2 char-count" data-count>0 car.</div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-primary btn-lg">Ajouter</button>
+        <button type="button" id="resetList" class="btn btn-danger btn-lg ms-3">Reset liste</button>
+      </div>
+    </div>
+  </form>
+
+  <hr class="my-5">
+  <h2>Liste des contacts (<span id="count">0</span>)</h2>
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr><th>Nom</th><th>Prénom</th><th>Date</th><th>Adresse</th><th>Mail</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="js/gps.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/form-validation.js"></script>
 </body>
-
 </html>
